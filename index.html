@@ -267,23 +267,36 @@
     }
 
     @media (max-width: 768px) {
+      /* =========================================================
+         MOBILE ONLY
+         Desktop layout above is intentionally untouched.
+         All mobile video sections now size from the video's
+         natural aspect ratio, so there are no artificial
+         100vh / fixed-height black gaps.
+         ========================================================= */
+
       section {
-        height: 100vh;
-        height: 100svh;
+        height: auto;
+        min-height: 0;
       }
-      /* First two videos: compact, centered, full video visible on mobile */
+
+      /* First 2 hero videos — smaller and centered */
       .intro-video-section {
         height: auto;
         min-height: 0;
-        padding: 16px 0;
+        width: 100%;
+        padding: 12px 0;
         box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .intro-video-section .video-wrapper {
-        width: 90%;
+        width: 82%;
         height: auto;
-        aspect-ratio: auto;
         margin: 0 auto;
+        overflow: hidden;
       }
 
       .intro-video-section .video-wrapper video {
@@ -292,48 +305,73 @@
         object-fit: contain;
         display: block;
       }
+
+      /* Local video groups — one video per row, centered */
       section.local-videos-section {
         width: 100%;
+        height: auto;
+        min-height: 0;
         box-sizing: border-box;
+        display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        gap: 12px;
         justify-content: flex-start;
         align-items: center;
-        padding: 16px;
-      }
-
-      .local-video-wrapper {
-        flex: 0 0 auto;
-        width: 100% !important;
-        box-sizing: border-box;
+        gap: 14px;
+        padding: 0;
         margin: 0;
-        height: auto !important;
-        aspect-ratio: 16 / 9;
+        overflow: visible;
       }
 
-      .local-video-wrapper.grxmtheshit {
-        aspect-ratio: 1 / 0.727;
-      }
-
+      .local-video-wrapper,
+      .local-video-wrapper.grxmtheshit,
       .local-video-wrapper.yazyenkilla,
       .local-video-wrapper.sidevideo {
-        aspect-ratio: 16 / 9;
+        flex: 0 0 auto;
+        width: 92% !important;
+        height: auto !important;
+        min-height: 0;
+        aspect-ratio: auto !important;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: block;
+        overflow: hidden;
       }
 
       .local-video-wrapper video {
         width: 100%;
-        height: 100%;
+        height: auto;
+        min-height: 0;
+        object-fit: contain;
+        display: block;
+        background: #000;
+      }
+
+      /* Saintmalayan — same natural-size behavior on mobile */
+      section.new-video-section {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+      }
+
+      section.new-video-section video {
+        width: 92%;
+        height: auto;
+        max-width: 92%;
+        max-height: none;
         object-fit: contain;
         display: block;
       }
-      section.new-video-section {
-        padding: 0 20px;
-      }
-      section.new-video-section video {
-        height: 250px;
-        width: auto;
-      }
+
+      /* Keep the existing mobile footer sizing */
       .social-footer {
         padding: 52px 16px 56px;
       }
@@ -364,13 +402,16 @@
         font-size: 16px;
         gap: 20px;
       }
+
       .logo-overlay {
         top: 12px;
         left: 12px;
       }
+
       .logo-overlay img {
         height: 96px;
       }
+
       .youtube-playlist-wrapper {
         width: 95%;
         aspect-ratio: 16 / 9;

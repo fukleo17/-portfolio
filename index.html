@@ -280,7 +280,7 @@
         min-height: 0;
       }
 
-      /* First 2 videos — same mobile scale/frame as the lower portfolio videos */
+      /* First 2 videos — same visual scale as the lower portfolio clips */
       .intro-video-section {
         width: 100% !important;
         height: auto !important;
@@ -294,11 +294,9 @@
       }
 
       .intro-video-section .video-wrapper {
-        position: relative;
-        flex: 0 0 auto;
         width: 92% !important;
         max-width: 92% !important;
-        height: calc(92vw * 0.5625) !important;
+        height: auto !important;
         min-height: 0 !important;
         margin: 0 auto !important;
         padding: 0 !important;
@@ -306,6 +304,8 @@
         overflow: hidden !important;
         background: #000;
         line-height: 0;
+        position: relative;
+        aspect-ratio: 16 / 9 !important;
       }
 
       .intro-video-section .video-wrapper video {

@@ -175,18 +175,21 @@
       min-height: 0;
       display: flex;
       flex-wrap: wrap;
-      width: 100vw;
+      width: 100%;
+      box-sizing: border-box;
       background: #000;
       overflow-x: hidden;
-      gap: 4%;
-      justify-content: space-between;
-      padding: 20px 20px 20px 20px;
+      gap: 24px;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
       margin: 0 auto;
-      box-sizing: border-box;
     }
 
     .local-video-wrapper {
-      flex: 0 0 48%;
+      flex: 0 1 calc(50% - 12px);
+      width: calc(50% - 12px);
+      box-sizing: border-box;
       background: #000;
       overflow: hidden;
       position: relative;
@@ -195,7 +198,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 24px;
+      margin: 0;
     }
 
     .local-video-wrapper.grxmtheshit {
@@ -263,134 +266,135 @@
       z-index: 10;
     }
 
-    /* ========================================================= */
-    /* MOBILE STYLES (ปรับปรุงใหม่ทั้งหมดเพื่อความสมดุลและกึ่งกลาง) */
-    /* ========================================================= */
     @media (max-width: 768px) {
       section {
-        height: auto;
-        min-height: auto;
+        height: 100vh;
+        height: 100svh;
       }
-
       .video-wrapper {
-        height: 60vh;
+        height: 100vh;
+        height: 100svh;
       }
-
-      /* จัด Local Videos ให้เรียงลงมาทีละคลิป และอยู่กึ่งกลาง */
       section.local-videos-section {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         width: 100%;
-        padding: 10px 16px;
-        gap: 0;
+        box-sizing: border-box;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 16px;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 16px;
       }
 
       .local-video-wrapper {
-        flex: 0 0 100% !important;
+        flex: 0 0 auto;
         width: 100% !important;
-        margin-bottom: 20px;
+        box-sizing: border-box;
+        margin: 0;
         height: auto !important;
+        aspect-ratio: 16 / 9;
       }
 
-      /* ให้ Video ปรับความสูงตามอัตราส่วนจริงแบบไม่มีพื้นที่ว่างเกินไป */
+      .local-video-wrapper.grxmtheshit {
+        aspect-ratio: 1 / 0.727;
+      }
+
+      .local-video-wrapper.yazyenkilla,
+      .local-video-wrapper.sidevideo {
+        aspect-ratio: 16 / 9;
+      }
+
       .local-video-wrapper video {
         width: 100%;
-        height: auto;
-        object-fit: cover;
+        height: 100%;
+        object-fit: contain;
+        display: block;
       }
-
-      /* Saintmalayan section บนมือถือ */
       section.new-video-section {
-        height: auto;
-        padding: 10px 16px;
-        margin-bottom: 20px;
+        padding: 0 20px;
       }
-
       section.new-video-section video {
-        width: 100%;
-        height: auto;
-        max-height: none;
+        height: 250px;
+        width: auto;
       }
-
-      /* Footer Elements */
       .social-footer {
-        padding: 48px 16px 40px;
+        padding: 52px 16px 56px;
       }
 
       .social-footer-title {
-        font-size: 16px;
+        font-size: 17px;
         letter-spacing: 1.5px;
       }
 
       .social-footer-services {
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 1px;
-        line-height: 1.6;
+        line-height: 1.7;
       }
 
       .social-footer-divider {
-        height: 36px;
-        margin: 28px 0 24px;
+        height: 42px;
+        margin: 32px 0 26px;
       }
 
       .social-footer-subtitle {
         font-size: 11px;
-        letter-spacing: 1.2px;
+        letter-spacing: 1.3px;
         margin-bottom: 12px;
       }
 
       .social-overlay {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
-        flex-wrap: wrap;
+        font-size: 16px;
+        gap: 20px;
       }
-
       .logo-overlay {
-        top: 16px;
-        left: 16px;
+        top: 12px;
+        left: 12px;
       }
-
       .logo-overlay img {
-        height: 60px;
+        height: 96px;
       }
-
       .youtube-playlist-wrapper {
-        width: 100%;
-        padding: 0 16px;
-        box-sizing: border-box;
+        width: 95%;
+        aspect-ratio: 16 / 9;
       }
     }
   </style>
 
+  <!-- Lenis Smooth Scroll -->
   <script src="https://unpkg.com/@studio-freight/lenis"></script>
+  <!-- GSAP + ScrollTrigger -->
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
   <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
+  <!-- Logo overlay -->
   <a class="logo-overlay" href="#" aria-label="Home">
     <img src="assets/yafiosa.png" alt="yafiosa logo">
   </a>
 
+  <!-- Section 1 -->
   <section data-animate>
     <div class="video-wrapper">
       <video autoplay muted loop playsinline>
         <source src="assets/prettifun.mp4" type="video/mp4" />
       </video>
+      
     </div>
   </section>
 
+  <!-- Section 2 -->
   <section data-animate>
     <div class="video-wrapper">
       <video autoplay muted loop playsinline>
         <source src="assets/SEFUTBAL.mp4" type="video/mp4" />
       </video>
+      
     </div>
   </section>
 
+  <!-- Section 3: Local Videos -->
   <section class="local-videos-section" data-animate>
     <div class="local-video-wrapper grxmtheshit">
       <video autoplay muted loop playsinline>
@@ -404,12 +408,14 @@
     </div>
   </section>
 
+  <!-- Section 4: Saintmalayan -->
   <section class="new-video-section" data-animate>
     <video autoplay muted loop playsinline>
       <source src="assets/Saintmalayan.mp4" type="video/mp4" />
     </video>
   </section>
 
+  <!-- Section 5: Tarvethz & Stargaze -->
   <section class="local-videos-section" data-animate>
     <div class="local-video-wrapper sidevideo">
       <video autoplay muted loop playsinline>
@@ -423,6 +429,8 @@
     </div>
   </section>
 
+  <!-- ===================== NEW WORK ADDED BELOW ===================== -->
+  <!-- Section 6: Marnii & cwski 1111 (paired, same style as Section 5) -->
   <section class="local-videos-section" data-animate>
     <div class="local-video-wrapper sidevideo">
       <video autoplay muted loop playsinline>
@@ -436,6 +444,7 @@
     </div>
   </section>
 
+  <!-- Section 7: yzu1111 & Newjeans 10s by yafio (paired, same style as Section 5) -->
   <section class="local-videos-section" data-animate>
     <div class="local-video-wrapper sidevideo">
       <video autoplay muted loop playsinline>
@@ -448,7 +457,10 @@
       </video>
     </div>
   </section>
+  <!-- ===================== END NEW WORK ===================== -->
 
+
+  <!-- Contact / Social Footer -->
   <div class="social-footer">
     <div class="social-footer-text">
       <div class="social-footer-title">CREATIVE BY @FUKLEO17</div>
@@ -460,15 +472,54 @@
     <div class="social-footer-contact">
       <div class="social-footer-subtitle">COMMISSIONS / COLLABORATIONS / INQUIRIES</div>
       <div class="social-overlay">
-        <a href="https://www.instagram.com/fukleo17/" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <circle cx="12" cy="12" r="4"></circle>
-          </svg>
-        </a>
-        <a href="https://youtube.com/playlist?list=PLhO4-qJ6bmk3DKlH_vmVI8gWEfc_UVyaX&si=xaE52cgcz6OlxkD9" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47a2.78 2.78 0 0 0-1.95 1.95A29.91 29.91 0 0 0 1 12a29.91 29.91 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29.91 29.91 0 0 0 23 12a29.91 29.91 0 0 0-.46-5.58z"></path>
-            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
-          </svg>
-        </a>
+    <a href="https://www.instagram.com/fukleo17/" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+      </svg>
+    </a>
+    <a href="https://youtube.com/playlist?list=PLhO4-qJ6bmk3DKlH_vmVI8gWEfc_UVyaX&si=xaE52cgcz6OlxkD9" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47a2.78 2.78 0 0 0-1.95 1.95A29.91 29.91 0 0 0 1 12a29.91 29.91 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29.91 29.91 0 0 0 23 12a29.91 29.91 0 0 0-.46-5.58z"></path>
+        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+      </svg>
+    </a>
+    <a href="mailto:kittinan17x@gmail.com">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+        <path d="M4 4h16v16H4z" fill="none" stroke="#b22222"/>
+        <polyline points="22,6 12,13 2,6" fill="none" stroke="#b22222"/>
+      </svg>
+      <span class="email-text">kittinan17x@gmail.com</span>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+      smoothTouch: false
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('[data-animate]').forEach(section => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark Scroll Video Website</title>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: transform 1.5s ease;
+    }
+
+    .video-wrapper:hover video {
+      transform: scale(1.05);
+    }
+
+    .title {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      font-size: 28px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 12px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    /* YouTube videos section */
+    section.youtube-section {
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+      background: #000;
+    }
+
+    .youtube-playlist-wrapper {
+      width: 80%;
+      max-width: 1000px;
+      aspect-ratio: 16 / 9;
+    }
+
+    .youtube-playlist-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Social Footer - Bottom Center */
+    .social-footer {
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 20px 72px;
+      background: #000;
+      text-align: center;
+    }
+
+    .social-footer-text {
+      text-align: center;
+    }
+
+    .social-footer-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .social-footer-services {
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .social-footer-divider {
+      width: 1px;
+      height: 54px;
+      background: #fff;
+      opacity: 0.65;
+      margin: 42px 0 34px;
+    }
+
+    .social-footer-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .social-footer-subtitle {
+      font-size: 13px;
+      letter-spacing: 2px;
+      opacity: 0.7;
+      margin: 0 0 14px;
+    }
+
+    .social-overlay a {
+      display: inline-flex;
+      align-items: center;
+      color: #b22222;
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-overlay a:hover {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+
+    .social-overlay .icon {
+      width: 24px;
+      height: 24px;
+      stroke: #b22222;
+      fill: none;
+      margin-right: 6px;
+    }
+
+    .social-overlay .email-text {
+      cursor: pointer;
+    }
+
+    /* Logo overlay */
+    .logo-overlay {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 10000;
+      display: block;
+    }
+    .logo-overlay img {
+      height: 120px;
+      width: auto;
+      display: block;
+    }
+
+    /* Local Videos Section */
+    section.local-videos-section {
+      height: auto;
+      min-height: 0;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100vw;
+      background: #000;
+      overflow-x: hidden;
+      gap: 4%;
+      justify-content: space-between;
+      padding: 20px 20px 20px 20px;
+      margin: 0 auto;
+    }
+
+    .local-video-wrapper {
+      flex: 0 0 48%;
+      background: #000;
+      overflow: hidden;
+      position: relative;
+      border-radius: 0;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .local-video-wrapper.grxmtheshit {
+      height: calc(48vw * 0.727);
+    }
+
+    .local-video-wrapper.yazyenkilla {
+      height: calc(48vw * 0.5625);
+    }
+
+    .local-video-wrapper.sidevideo {
+      height: calc(48vw * 0.5625);
+    }
+
+    .local-video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: black;
+      transition: transform 1.5s ease;
+      display: block;
+    }
+
+    .local-video-wrapper:hover video {
+      transform: scale(1.05);
+    }
+
+    /* Fullscreen Video Section (Saintmalayan) */
+    section.new-video-section {
+      position: relative;
+      height: 100vh;
+      padding: 0 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      overflow: hidden;
+    }
+
+    section.new-video-section video {
+      width: auto;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100vh;
+      object-fit: contain;
+      filter: brightness(0.85);
+      transition: transform 1.5s ease;
+      display: block;
+    }
+
+    section.new-video-section:hover video {
+      transform: scale(1.05);
+    }
+
+    section.new-video-section .title {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      font-size: 28px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 12px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      section.local-videos-section {
+        flex-direction: column;
+      }
+      .local-video-wrapper {
+        width: 100% !important;
+        height: auto !important;
+        margin-bottom: 16px;
+      }
+      .local-video-wrapper video {
+        height: 250px;
+        width: auto;
+      }
+      section.new-video-section {
+        padding: 0 20px;
+      }
+      section.new-video-section video {
+        height: 250px;
+        width: auto;
+      }
+      .social-footer {
+        padding: 52px 16px 56px;
+      }
+
+      .social-footer-title {
+        font-size: 17px;
+        letter-spacing: 1.5px;
+      }
+
+      .social-footer-services {
+        font-size: 10px;
+        letter-spacing: 1px;
+        line-height: 1.7;
+      }
+
+      .social-footer-divider {
+        height: 42px;
+        margin: 32px 0 26px;
+      }
+
+      .social-footer-subtitle {
+        font-size: 11px;
+        letter-spacing: 1.3px;
+        margin-bottom: 12px;
+      }
+
+      .social-overlay {
+        font-size: 16px;
+        gap: 20px;
+      }
+      .logo-overlay {
+        top: 12px;
+        left: 12px;
+      }
+      .logo-overlay img {
+        height: 96px;
+      }
+      .youtube-playlist-wrapper {
+        width: 95%;
+        aspect-ratio: 16 / 9;
+      }
+    }
+  </style>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/@studio-freight/lenis"></script>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- Logo overlay -->
+  <a class="logo-overlay" href="#" aria-label="Home">
+    <img src="yafiosa.png" alt="yafiosa logo">
+  </a>
+
+  <!-- Section 1 -->
+  <section data-animate>
+    <div class="video-wrapper">
+      <video autoplay muted loop playsinline>
+        <source src="prettifun.mp4" type="video/mp4" />
+      </video>
+      <div class="title">Visual Concept</div>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section data-animate>
+    <div class="video-wrapper">
+      <video autoplay muted loop playsinline>
+        <source src="SEFUTBAL.mp4" type="video/mp4" />
+      </video>
+      <div class="title">Visual Concept</div>
+    </div>
+  </section>
+
+  <!-- Section 3: Local Videos -->
+  <section class="local-videos-section" data-animate>
+    <div class="local-video-wrapper grxmtheshit">
+      <video autoplay muted loop playsinline>
+        <source src="grxmtheshit.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="local-video-wrapper yazyenkilla">
+      <video autoplay muted loop playsinline>
+        <source src="Yazyenkilla.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <!-- Section 4: Saintmalayan -->
+  <section class="new-video-section" data-animate>
+    <video autoplay muted loop playsinline>
+      <source src="Saintmalayan.mp4" type="video/mp4" />
+    </video>
+  </section>
+
+  <!-- Section 5: Tarvethz & Stargaze -->
+  <section class="local-videos-section" data-animate>
+    <div class="local-video-wrapper sidevideo">
+      <video autoplay muted loop playsinline>
+        <source src="Tarvethz.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="local-video-wrapper sidevideo">
+      <video autoplay muted loop playsinline>
+        <source src="Stargaze.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <!-- ===================== NEW WORK ADDED BELOW ===================== -->
+  <!-- Section 6: Marnii & cwski 1111 (paired, same style as Section 5) -->
+  <section class="local-videos-section" data-animate>
+    <div class="local-video-wrapper sidevideo">
+      <video autoplay muted loop playsinline>
+        <source src="Marnii.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="local-video-wrapper sidevideo">
+      <video autoplay muted loop playsinline>
+        <source src="cwski 1111.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <!-- Section 7: yzu1111 & Newjeans 10s by yafio (paired, same style as Section 5) -->
+  <section class="local-videos-section" data-animate>
+    <div class="local-video-wrapper sidevideo">
+      <video autoplay muted loop playsinline>
+        <source src="yzu1111.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="local-video-wrapper sidevideo">
+      <video autoplay muted loop playsinline>
+        <source src="Newjeans 10s by yafio.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+  <!-- ===================== END NEW WORK ===================== -->
+
+
+  <!-- Contact / Social Footer -->
+  <div class="social-footer">
+    <div class="social-footer-text">
+      <div class="social-footer-title">CREATIVE BY @FUKLEO17</div>
+      <div class="social-footer-services">VISUAL DEVELOPMENT / VIDEO EDITING / VFX / COLOR GRADING / COMPOSITING</div>
+    </div>
+
+    <div class="social-footer-divider"></div>
+
+    <div class="social-footer-contact">
+      <div class="social-footer-subtitle">COMMISSIONS / COLLABORATIONS / INQUIRIES</div>
+      <div class="social-overlay">
+    <a href="https://www.instagram.com/fukleo17/" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+      </svg>
+    </a>
+    <a href="https://youtube.com/playlist?list=PLhO4-qJ6bmk3DKlH_vmVI8gWEfc_UVyaX&si=xaE52cgcz6OlxkD9" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47a2.78 2.78 0 0 0-1.95 1.95A29.91 29.91 0 0 0 1 12a29.91 29.91 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29.91 29.91 0 0 0 23 12a29.91 29.91 0 0 0-.46-5.58z"></path>
+        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+      </svg>
+    </a>
+    <a href="mailto:kittinan17x@gmail.com">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+        <path d="M4 4h16v16H4z" fill="none" stroke="#b22222"/>
+        <polyline points="22,6 12,13 2,6" fill="none" stroke="#b22222"/>
+      </svg>
+      <span class="email-text">kittinan17x@gmail.com</span>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+      smoothTouch: false
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('[data-animate]').forEach(section => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    });
+  </script>
+</body>
+</html>
